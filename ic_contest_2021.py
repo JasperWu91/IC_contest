@@ -1,6 +1,5 @@
 import math
 
-# 向量外積計算，判斷順序
 def cross_product(p0, p1, p2):
     ax = p1[0] - p0[0]
     ay = p1[1] - p0[1]
@@ -10,13 +9,13 @@ def cross_product(p0, p1, p2):
     print(f"Cross product between {p1} and {p2} relative to {p0}: {cross}")
     return cross
 
-# 排序接收器座標，形成凸六邊形（逆時針）
+
 def sort_vertices(receivers):
     print("\n=== Sorting Receivers ===")
     origin = receivers[0]
     print(f"Chosen origin: {origin}")
     
-    # 計算其餘點相對原點的角度和距離
+
     def key_func(p):
         dx = p[0] - origin[0]
         dy = p[1] - origin[1]
@@ -30,7 +29,7 @@ def sort_vertices(receivers):
     print(f"Sorted vertices (counter-clockwise): {result}")
     return result
 
-# 計算多邊形面積（使用鞋帶公式）
+
 def polygon_area(vertices):
     print("\n=== Calculating Polygon Area ===")
     n = len(vertices)
@@ -47,14 +46,14 @@ def polygon_area(vertices):
     print(f"Total Polygon Area: {area}")
     return area
 
-# 計算三角形面積
+
 def triangle_area(p1, p2, p3):
     print(f"Triangle ({p1}, {p2}, {p3}):")
     area = abs((p1[0] * (p2[1] - p3[1]) + p2[0] * (p3[1] - p1[1]) + p3[0] * (p1[1] - p2[1])) / 2)
     print(f"  Area = |({p1[0]} * ({p2[1]} - {p3[1]}) + {p2[0]} * ({p3[1]} - {p1[1]}) + {p3[0]} * ({p1[1]} - {p2[1]}))| / 2 = {area}")
     return area
 
-# 判斷點是否在六邊形內
+
 def is_point_inside(point, vertices):
     print(f"\n=== Checking if Point {point} is Inside ===")
     poly_area = polygon_area(vertices)
@@ -72,26 +71,26 @@ def is_point_inside(point, vertices):
     print(f"Difference: {abs(total_triangle_area - poly_area)} < {tolerance} -> {'Inside' if is_inside else 'Outside'}")
     return is_inside
 
-# 測試數據（從附錄二提取）
+
 receivers = [
     (103, 340),  # O/6
     (755, 510),   # O/38
     (103, 50),  # O/4
     (982, 280),  # O/2
-    (290, 560),  # O/2 (重複座標，按題目處理)
-    (710, 50)   # O/2 (假設另一點，根據題目調整)
+    (290, 560),  # O/2
+    (710, 50)   # O/2 (
 ]
 
 test_points = [
-    (381, 12), (161, 720), (343, 840), (444, 647)  # 物件編號 38, 10, 12, 16 等
+    (381, 12), (161, 720), (343, 840), (444, 647) 
 ]
 
-# 主程式
+
 def main():
-    # 步驟 1：排序接收器座標
+
     sorted_receivers = sort_vertices(receivers)
 
-    # 步驟 2：測試每個待測點
+
     for idx, point in enumerate(test_points, 1):
         print(f"\n===== Testing Point {idx}: {point} =====")
         result = is_point_inside(point, sorted_receivers)
