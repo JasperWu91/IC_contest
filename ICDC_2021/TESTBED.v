@@ -3,9 +3,7 @@
 `define SDFFILE    "./geofence_syn.sdf"
 `define End_CYCLE  1000000
 `define PAT        "grad.data"
-`ifdef RTL
-  `include "geofence.v"
-`endif
+`include "geofence.v"
 module testfixture();
 integer fd;
 integer objnum;
